@@ -8,3 +8,20 @@ en:
     content: Framgia Training System
     title: Home
   project_title: Project 2
+  update_profile: Update
+  devise:
+    edituser: Edit user
+    update: Update
+    cancel_acc: Cancel my account
+    unhappy: Unhappy?
+    back: Back
+    areyousure: Are you sure?
+    leave_blank: (leave blank if you don't want to change it)
+    minimum_password_length: (%{minpasslength} characters minimum)
+    need_current_pass: (we need your current password to confirm your changes)
+  sessions:
+    login: Log in
+  shared:
+    forgot_pass: Forgot your password?
+    drci: Didn't receive confirmation instructions?
+    drui: Didn't receive unlock instructions?
