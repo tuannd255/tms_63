@@ -1,0 +1,10 @@
+<% provide :title, t("admin.course") %>
+<h1><%= t "admin.course" %></h1>
+
+<div class="row">
+  <div class="center">
+    <%= link_to t("admin.createcourse"), new_admin_course_path,
+      class: "btn btn-primary btn-lg" %>
+  </div>
+  <%= render "course" %>
+</div>

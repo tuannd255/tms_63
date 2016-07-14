@@ -2,6 +2,7 @@ class Subject < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
   has_many :user_subjects, dependent: :destroy
   has_many :users, through: :user_subjects
+  has_many :courses, through: :course_subjects
 
   validates :name, presence: true
   validates :description, presence: true
