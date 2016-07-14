@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  devise :database_authenticatable, :trackable,
+    :rememberable, :validatable, :registerable
+  
   has_many :activities, dependent: :destroy
   has_many :user_tasks, dependent: :destroy
   has_many :tasks, through: :user_tasks

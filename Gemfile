@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "rails", "4.2.6"
+gem "devise"
 gem "bootstrap-sass", "3.2.0.0"
 gem "bcrypt", "3.1.7"
 gem "config", "1.2.1"
