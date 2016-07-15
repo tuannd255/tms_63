@@ -1,0 +1,5 @@
+<div class="users center">
+  <h1><%= t "admin.users.all" %></h1>
+  <h2><%= link_to t("admin.users.create_user"), new_admin_user_path %></h2>
+  <%= render @users %>
+</div>
