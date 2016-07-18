@@ -9,6 +9,17 @@ en:
       title: Users
       update_button: Update
       update_user: Update User
+    course: "Courses List"
+    create_course: "Create Course"
+    new_course: "New Course"
+    success: "Success"
+    update_success: "Update Success"
+    delete_success: "Delete Success"
+    delete_fail: "Delete Fail"
+    edit: "Edit course"
+    save: "Save"
+    delete: "Delete"
+    create_fail: "Need at least 1 subject in course !"
   destroy:
     button: Delete
     confirm: Are you want delete %{name}

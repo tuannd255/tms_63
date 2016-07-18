@@ -4,7 +4,7 @@ class Ability
   def initialize user, namespace
     user ||= User.new
     if user.admin?
-      can :manage, [User, Subject]
+      can :manage, [User, Subject, Course]
       if namespace == "supervisor"
         cannot :manage, :all
       end

@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     root "static_pages#home"
     resources :users, except: :show
     resources :subjects, only: [:create, :new, :index]
+    resources :courses
   end
 end
