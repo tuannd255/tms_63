@@ -15,3 +15,13 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+var click = function(){
+  $('.show-subject').on('click', function(){
+    var check = $(this).data('id');
+    $('tr[data-task='+check+']').toggleClass('block');
+    event.preventDefault();
+  });
+};
+
+$(document).on('page:change load', click);

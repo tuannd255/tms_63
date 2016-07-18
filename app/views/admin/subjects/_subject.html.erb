@@ -1,8 +1,17 @@
-<tr id="subject-<%= subject.id %>">
-  <td>
-    <%= subject.name %>
+<tr>
+  <td class="subject-content"><%= link_to subject.name,
+    admin_subject_path(subject) %></td>
+  <td class="subject-content"><%= subject.description %></td>
+  <td class="subject-content">
+    <%= link_to t(:edit_button), edit_admin_subject_path(subject),
+      class: "btn btn-primary" %>
+    <%= link_to t("destroy.button"), admin_subject_path(subject),
+      method: :delete, class: "btn btn-danger",
+      data: {confirm: t("destroy.confirm", name: subject.name)} %>
+    <%= button_tag t("subjects.show"), class: "btn btn-primary show-subject",
+      data: {id: subject.id} %>
   </td>
-  <td>
-    <%= subject.description %>
-  </td>
+</tr>
+<tr class="task-subject" data-task="<%= subject.id %>">
+  <%= render "show_task", subject: subject %>
 </tr>

@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
     namespace = controller_path.split("/").first
     Ability.new current_user, namespace
   end
+
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = t "flash.record_not_found", column_name: params[:id]
+    redirect_to root_url
+  end
 end

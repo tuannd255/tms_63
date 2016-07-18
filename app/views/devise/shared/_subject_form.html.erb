@@ -1,0 +1,18 @@
+<%= form_for [:admin, subject] do |f| %>
+  <%= render "devise/shared/error_messages", object: subject %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, class: "form-control" %>
+
+  <%= f.label :tasks %>
+  <%= f.fields_for :tasks do |builder| %>
+    <%= render "task_fields", f: builder %>
+  <% end %>
+
+  <%= link_to_add_fields t("subjects.add_task"), f, :tasks %>
+
+  <%= f.submit t("subjects.#{params[:action]}"), class: "btn btn-primary" %>
+<% end %>
