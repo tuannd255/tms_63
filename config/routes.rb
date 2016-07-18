@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   get "help" => "static_pages#help"
   namespace :admin do
-    root "users#index"
+    root "static_pages#home"
     resources :users, except: :show
+    resources :subjects, only: [:create, :new, :index]
   end
 end

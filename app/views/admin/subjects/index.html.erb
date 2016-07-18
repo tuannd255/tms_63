@@ -1,0 +1,7 @@
+<div class="subjects">
+  <h1><%= t "subjects.title" %></h1>
+  <h2><%= link_to t("subjects.new"), new_admin_subject_path %></h2>
+  <table>
+    <%= render @subjects %>
+  </table>
+</div>

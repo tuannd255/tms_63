@@ -5,7 +5,7 @@ en:
       all: All users
       create_fail: Create fail
       create_user: Create user
-      created: 'Created %{name}, email: %{email}'
+      created: "Created %{name}, email: %{email}"
       title: Users
       update_button: Update
       update_user: Update User
@@ -47,3 +47,12 @@ en:
     forgot_pass: Forgot your password?
   successupdate: Update success
   update_profile: Update
+  subjects:
+    new: New subject
+    create: Create subject
+    created: Subject hes been created
+    title: Subjects
+    add_task: Add another task
+    remove_task: Remove task
+    name: Name
+    description: Description
