@@ -1,7 +1,19 @@
 <div class="subjects">
   <h1><%= t "subjects.title" %></h1>
-  <h2><%= link_to t("subjects.new"), new_admin_subject_path %></h2>
-  <table>
-    <%= render @subjects %>
-  </table>
+  <h2><%= link_to t("subjects.new"), new_admin_subject_path,
+    class: "btn btn-success" %></h2>
+  <div class="col-md-8 col-md-offset-2 center">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th class="center"><%= t "subject.name" %></th>
+          <th class="center"><%= t "subject.description" %></th>
+          <th class="center"><%= t "subject.action" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @subjects %>
+      </tbody>
+    </table>
+  </div>
 </div>

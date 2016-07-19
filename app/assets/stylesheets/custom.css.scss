@@ -12,7 +12,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 section {
@@ -216,4 +216,13 @@ input {
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442;
+}
+.task-subject {
+  display: none;
+}
+.block {
+  display: table-row !important;
+}
+.subject-content {
+  width: 33%;
 }

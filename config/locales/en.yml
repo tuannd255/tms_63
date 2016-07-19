@@ -4,11 +4,12 @@ en:
     users:
       all: All users
       create_fail: Create fail
-      create_user: Create user
+      new: Create user
       created: "Created %{name}, email: %{email}"
       title: Users
       update_button: Update
       update_user: Update User
+      edit: Save change
     course: "Courses List"
     create_course: "Create Course"
     new_course: "New Course"
@@ -67,3 +68,15 @@ en:
     remove_task: Remove task
     name: Name
     description: Description
+    action: Action
+    subject_deleted: Subject deleted
+    subject_empty:  Subject delete fail
+    edit: Edit subject
+    edit_success: Edit success
+    show: Show
+    tasks: Tasks(%{count})
+  flash:
+    record_not_found: Sorry, no record of %{column_name} was found!
+  tasks:
+    name: Name
+    no_task: The subject not have task

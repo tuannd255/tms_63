@@ -1,0 +1,11 @@
+<td colspan="3">
+  <% if subject.tasks.any? %>
+    <strong><%= t "subjects.tasks", count: subject.tasks.size %></strong><br>
+    <% subject.tasks.each do |task| %>
+      <%= t "tasks.name" %>: 
+      <%= task.name %><br>
+    <% end %>
+  <% else %>
+    <strong><%= t "tasks.no_task" %></strong>
+  <% end %>
+</td>

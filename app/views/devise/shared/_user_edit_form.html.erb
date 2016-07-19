@@ -12,5 +12,5 @@
   <%= f.label :password_confirmation, t("signup.confirm") %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
 
-  <%= f.submit t("admin.users.create_user"), class: "btn btn-primary" %>
+  <%= f.submit t("admin.users.#{params[:action]}"), class: "btn btn-primary" %>
 <% end %>
