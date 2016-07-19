@@ -9,6 +9,8 @@ class Ability
         cannot :manage, :all
       end
     elsif user.supervisor?
+      can [:add, :destroy], UserCourse
+      can [:read], Course
       if namespace == "admin"
         cannot :manage, :all
       end

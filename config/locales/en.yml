@@ -1,5 +1,6 @@
 en:
   admin:
+    all_trainee: All Trainee
     admin: Admin
     users:
       all: All users
@@ -8,23 +9,26 @@ en:
       created: "Created %{name}, email: %{email}"
       title: Users
       update_button: Update
+      update: Add / Remove
       update_user: Update User
       edit: Save change
     start: Start
     started: Started
     finish: Finish
     finished: Finished
-    course: "Courses List"
-    create_course: "Create Course"
-    new_course: "New Course"
-    success: "Success"
-    update_success: "Update Success"
-    delete_success: "Delete Success"
-    delete_fail: "Delete Fail"
-    edit: "Edit course"
-    save: "Save"
-    delete: "Delete"
-    create_fail: "Need at least 1 subject in course !"
+    course: Courses List
+    add_user: Add Trainee to Course
+    create_course: Create Course
+    new_course: New Course
+    success: Success
+    update_success: Update Success
+    update_fail: Update Fail
+    delete_success: Delete Success
+    delete_fail: Delete Fail
+    edit: Edit course
+    save: Save
+    delete: Delete
+    create_fail: Need at least 1 subject in course !
   destroy:
     button: Delete
     confirm: Are you want delete %{name}
