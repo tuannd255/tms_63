@@ -1,0 +1,20 @@
+<% provide :title, @course.name %>
+<h1><%= @course.name %></h1>
+<div class="center"><%= @course.description %></div>
+<div class="center">
+  <%= link_to edit_supervisor_course_add_user_courses_path(@course),
+    class: "btn btn-info" do %>
+    <span><%= t :add_user %></span>
+  <% end %>
+</div>
+<ul class="subjects">
+  <% if @course.course_subjects.any? %>
+    <ol>
+      <% @course.course_subjects.each do |course_subject| %>
+        <li>
+          <%= course_subject.subject.name %>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+</ul>

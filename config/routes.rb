@@ -10,4 +10,10 @@ Rails.application.routes.draw do
     resources :courses
     resources :subjects, except: :show
   end
+  namespace :supervisor do
+    resources :courses, only: [:show, :index]
+    resources :courses, only: :show do
+      resource :add_user_courses, only: [:edit, :update]
+    end
+  end
 end

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :user_subjects, dependent: :destroy
   has_many :subjects, through: :user_subjects
 
-  enum role: {user: 0, supervisor: 1, admin: 2}
+  enum role: {trainee: 0, supervisor: 1, admin: 2}
 
   private
   def password_required?

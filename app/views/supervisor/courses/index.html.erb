@@ -1,0 +1,7 @@
+<% provide :title, t("admin.course") %>
+<h1><%= t "admin.course" %></h1>
+
+<div class="row">
+  <%= render @courses %>
+  <%= will_paginate %>
+</div>
