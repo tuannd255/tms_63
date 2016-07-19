@@ -5,6 +5,7 @@ class Ability
     user ||= User.new
     if user.admin?
       can :manage, [User, Subject, Course]
+      can [:add, :destroy], UserCourse
       if namespace == "supervisor"
         cannot :manage, :all
       end

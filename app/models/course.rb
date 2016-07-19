@@ -8,6 +8,7 @@ class Course < ActiveRecord::Base
   validates :description, presence: true
 
   accepts_nested_attributes_for :subjects, allow_destroy: true
+  accepts_nested_attributes_for :user_courses, allow_destroy: true
 
   enum status: {init: 0, start: 1, finish: 2}
 end

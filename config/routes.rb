@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   namespace :admin do
     root "static_pages#home"
     resources :users, except: :show
-    resources :courses
+    resources :courses do
+      resource :assign_trainees, only: [:edit, :update]
+    end
     resources :subjects, except: :show
+    resources :user_courses, only: :destroy
   end
   namespace :supervisor do
     resources :courses, only: [:show, :index]

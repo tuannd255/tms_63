@@ -1,10 +1,14 @@
 <% @courses.each do |course| %>
-  <div class="course" %>
-    <%= link_to course.name, admin_course_path(course) %>
-    <%= link_to t("admin.delete"), [:admin, course], method: :delete,
-      data: {confirm: t("devise.areyousure")}, class: "btn btn-danger" %>
-    <%= link_to t("admin.edit"), edit_admin_course_path(course),
-      class: "btn btn-primary" %>
-  </div>
+  <tr>
+    <td><%= link_to course.name, admin_course_path(course) %></td>
+    <td><%= link_to course.description, admin_course_path(course) %></td>
+    <td>
+      <%= link_to t("admin.edit"), edit_admin_course_path(course),
+        class: "btn btn-primary" %>
+    </td>
+    <td>
+      <%= course.status %>
+    </td>
+  </tr>
 <% end %>
 <%= will_paginate %>

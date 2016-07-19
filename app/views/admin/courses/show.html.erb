@@ -1,32 +1,57 @@
 <% provide :title, @course.name %>
-<h1><%= @course.name %></h1>
-<div class="center"><%= @course.description %></div>
-<ul class="subjects">
-  <% if @course.course_subjects.any? %>
-    <ol>
-      <% @course.course_subjects.each do |course_subject| %>
-        <li>
-          <%= course_subject.subject.name %>
-        </li>
-      <% end %>
-    </ol>
-  <% end %>
-</ul>
+<div class="col-md-6 center course-content">
+  <ul>
+    <h3><%= t "admin.users.supervisor" %></h3>
 
-<div class="panel panel-default text-center">
+    <% @supervisors.each do |supervisor| %>
+      <li>
+        <%= supervisor.user.name %>
+        <%= link_to t("destroy.button"),
+          admin_user_course_path(supervisor), method: :delete,
+          data: {confirm: t("destroy.confirm", name: supervisor.user.name)},
+          class: "btn btn-danger" %>
+      </li>
+    <% end %>
+
+    <%= link_to t("courses.add_supervisor"),
+      edit_admin_course_assign_trainees_path(@course) %>
+
+    <h3><%= t "admin.users.title" %></h3>
+
+    <% @trainees.each do |trainee| %>
+      <li><%= trainee.user.name %></li>
+    <% end %>
+  </ul>
+</div>
+<div class="col-md-6 center course-content">
+  <h1><%= @course.name %></h1>
+  <h3>
+    <%= t "subjects.description" %>: 
+    <%= @course.description %>
+  </h3>
+  <h4><%= t "subjects.title" %></h4>
+  <% if @course.course_subjects.any? %>
+    <% @course.course_subjects.each do |course_subject| %>
+      <li><%= course_subject.subject.name %></li>
+    <% end %>
+  <% end %>
+
   <% if @course.init? %>
     <%= form_for [:admin, @course] do |f| %>
       <%= f.hidden_field :status, value: "start" %>
-      <%= f.submit t("admin.start"), class: "btn btn-primary" %>
+      <%= f.submit t("admin.start"), class: "btn btn-success submit-btn" %>
     <% end %>
   <% elsif @course.start? %>
-    <strong><%= t "admin.started" %></strong>
     <%= form_for [:admin, @course] do |f| %>
       <%= f.hidden_field :status, value: "finish" %>
-      <%= f.submit t("admin.finish"), class: "btn btn-primary" %>
+      <%= f.submit t("admin.finish"), class: "btn btn-primary submit-btn" %>
     <% end %>
   <% else %>
-    <%= link_to t("admin.finished"),admin_courses_path,
-      class: "btn btn-danger" %>
+    <%= link_to t("admin.finished"), admin_courses_path,
+      class: "btn btn-danger submit-btn" %>
+    <br>
   <% end %>
+  <%= link_to t("admin.delete"), [:admin, @course], method: :delete,
+    data: {confirm: t("devise.areyousure")},
+    class: "btn btn-danger submit-btn" %>
 </div>
