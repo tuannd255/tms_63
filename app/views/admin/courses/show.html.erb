@@ -12,3 +12,21 @@
     </ol>
   <% end %>
 </ul>
+
+<div class="panel panel-default text-center">
+  <% if @course.init? %>
+    <%= form_for [:admin, @course] do |f| %>
+      <%= f.hidden_field :status, value: "start" %>
+      <%= f.submit t("admin.start"), class: "btn btn-primary" %>
+    <% end %>
+  <% elsif @course.start? %>
+    <strong><%= t "admin.started" %></strong>
+    <%= form_for [:admin, @course] do |f| %>
+      <%= f.hidden_field :status, value: "finish" %>
+      <%= f.submit t("admin.finish"), class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <%= link_to t("admin.finished"),admin_courses_path,
+      class: "btn btn-danger" %>
+  <% end %>
+</div>

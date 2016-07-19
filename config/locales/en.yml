@@ -10,6 +10,10 @@ en:
       update_button: Update
       update_user: Update User
       edit: Save change
+    start: Start
+    started: Started
+    finish: Finish
+    finished: Finished
     course: "Courses List"
     create_course: "Create Course"
     new_course: "New Course"
@@ -70,7 +74,7 @@ en:
     description: Description
     action: Action
     subject_deleted: Subject deleted
-    subject_empty:  Subject delete fail
+    subject_empty: Subject delete fail
     edit: Edit subject
     edit_success: Edit success
     show: Show
