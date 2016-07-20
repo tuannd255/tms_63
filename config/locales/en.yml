@@ -12,6 +12,7 @@ en:
       update: Add / Remove
       update_user: Update User
       edit: Save change
+      supervisor: Supervisor
     start: Start
     started: Started
     finish: Finish
@@ -85,6 +86,14 @@ en:
     tasks: Tasks(%{count})
   flash:
     record_not_found: Sorry, no record of %{column_name} was found!
+    course_empty: Course not exist
+    removed_user: Deleted
+    remove_user_failed: Delete fail
   tasks:
     name: Name
     no_task: The subject not have task
+  courses:
+    add_supervisor: Add supervisor
+    title: Courses
+    status: Status
+    action: Action

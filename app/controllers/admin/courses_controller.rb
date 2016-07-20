@@ -4,10 +4,14 @@ class Admin::CoursesController < ApplicationController
 
   def index
     @courses = @courses.page params[:page]
-    @course = Course.new
   end
 
   def show
+    @user_courses = @course.user_courses
+    @supervisors = @user_courses.select{|user_course|
+      user_course.user.supervisor?}
+    @trainees = @user_courses.select{|user_course|
+      user_course.user.trainee?}
   end
 
   def new
@@ -49,7 +53,7 @@ class Admin::CoursesController < ApplicationController
 
   private
   def course_params
-    params.require(:course).permit :name, :description, :status, 
+    params.require(:course).permit :name, :description, :status,
       subject_ids: []
   end
 
