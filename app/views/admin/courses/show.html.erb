@@ -3,14 +3,16 @@
   <ul>
     <h3><%= t "admin.users.supervisor" %></h3>
 
-    <% @supervisors.each do |supervisor| %>
-      <li>
-        <%= supervisor.user.name %>
-        <%= link_to t("destroy.button"),
-          admin_user_course_path(supervisor), method: :delete,
-          data: {confirm: t("destroy.confirm", name: supervisor.user.name)},
-          class: "btn btn-danger" %>
-      </li>
+    <% @user_courses.each do |supervisor| %>
+      <% if supervisor.user.supervisor? %>
+        <li>
+          <%= supervisor.user.name %>
+          <%= link_to t("destroy.button"),
+            admin_user_course_path(supervisor), method: :delete,
+            data: {confirm: t("destroy.confirm", name: supervisor.user.name)},
+            class: "btn btn-danger" %>
+        </li>
+      <% end %>
     <% end %>
     <%= link_to t("courses.add_supervisor"),
       edit_admin_course_assign_trainees_path(@course) unless
@@ -18,8 +20,8 @@
 
     <h3><%= t "admin.users.title" %></h3>
 
-    <% @trainees.each do |trainee| %>
-      <li><%= trainee.user.name %></li>
+    <% @user_courses.each do |trainee| %>
+      <li><%= trainee.user.name if trainee.user.trainee? %></li>
     <% end %>
   </ul>
 </div>

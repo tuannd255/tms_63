@@ -1,5 +1,6 @@
 class Admin::CoursesController < ApplicationController
   load_and_authorize_resource
+  skip_load_resource only: :show
   before_action :load_subjects, only: [:edit, :new]
 
   def index
@@ -7,11 +8,8 @@ class Admin::CoursesController < ApplicationController
   end
 
   def show
+    @course = Course.includes(:users).find_by_id params[:id]
     @user_courses = @course.user_courses
-    @supervisors = @user_courses.select{|user_course|
-      user_course.user.supervisor?}
-    @trainees = @user_courses.select{|user_course|
-      user_course.user.trainee?}
   end
 
   def new
