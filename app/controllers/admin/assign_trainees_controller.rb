@@ -2,8 +2,8 @@ class Admin::AssignTraineesController < ApplicationController
   load_and_authorize_resource :course
 
   def edit
-    @user_courses = @course.user_courses
-    @supervisors = User.supervisor
+    @user_courses = @course.users
+    @supervisor_not_in_courses = User.not_in_course(@course).supervisor
   end
 
   def update

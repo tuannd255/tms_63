@@ -1,3 +1,7 @@
-<div class="course" %>
-  <%= link_to course.name, supervisor_course_path(course) %>
-</div>
+<tr>
+  <td><%= link_to course.name, supervisor_course_path(course) %></td>
+  <td><%= link_to course.description, supervisor_course_path(course) %></td>
+  <td>
+    <%= course.status %>
+  </td>
+</tr>

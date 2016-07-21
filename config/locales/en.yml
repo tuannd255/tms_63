@@ -97,3 +97,5 @@ en:
     title: Courses
     status: Status
     action: Action
+    add_trainee: Add trainee
+  not_authorized: You don't have permition to do this action
