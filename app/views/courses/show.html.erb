@@ -1,0 +1,26 @@
+<% provide :title, @course.name %>
+<h1><%= @course.name %></h1>
+<div class="center"><%= @course.description %></div>
+  <ul>
+    <% @user_course.user_subjects.each do |user_subject| %>
+      <h3><li><%= user_subject.subject.name %></li></h3>
+      <% user_subject.user_tasks.each do |user_task|%>
+        <div>
+          <span><%= user_task.task.name %></span>
+          <% unless user_task.status %>
+            <%= form_for [@course, user_task] do |f|%>
+              <span>
+                <%= f.hidden_field :status, value: true %>
+                <%= f.submit t("admin.finish"), 
+                  class: "btn btn-primary hl-button" %>
+              </span>
+            <% end %>
+          <% else %>
+            <div class="btn btn-danger submit-btn">
+              <%= t "admin.finished" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </ul>

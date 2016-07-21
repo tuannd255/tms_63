@@ -28,4 +28,8 @@ Rails.application.routes.draw do
       resources :course_subjects, only: :show
     end
   end
+  resources :courses, only: [:show, :index]
+  resources :courses, only: :show do
+    resources :user_tasks, only: [:update]
+  end
 end
