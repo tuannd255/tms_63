@@ -12,9 +12,9 @@
           class: "btn btn-danger" %>
       </li>
     <% end %>
-
     <%= link_to t("courses.add_supervisor"),
-      edit_admin_course_assign_trainees_path(@course) %>
+      edit_admin_course_assign_trainees_path(@course) unless
+      @course.finish? %>
 
     <h3><%= t "admin.users.title" %></h3>
 
@@ -32,7 +32,9 @@
   <h4><%= t "subjects.title" %></h4>
   <% if @course.course_subjects.any? %>
     <% @course.course_subjects.each do |course_subject| %>
-      <li><%= course_subject.subject.name %></li>
+      <li>
+        <%= course_subject.subject.name %>
+      </li>
     <% end %>
   <% end %>
 

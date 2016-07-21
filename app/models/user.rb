@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
 
   enum role: {trainee: 0, supervisor: 1, admin: 2}
 
+  scope :not_in_course, -> course_id {where "id not in (select user_id
+    from user_courses where course_id = ?)", course_id}
+
   private
   def password_required?
     new_record? ? super: false

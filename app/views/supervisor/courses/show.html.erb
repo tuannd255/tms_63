@@ -1,20 +1,36 @@
 <% provide :title, @course.name %>
-<h1><%= @course.name %></h1>
-<div class="center"><%= @course.description %></div>
-<div class="center">
-  <%= link_to edit_supervisor_course_add_user_courses_path(@course),
-    class: "btn btn-info" do %>
-    <span><%= t :add_user %></span>
+<div class="col-md-6 center course-content">
+  <ul>
+    <h3><%= t "admin.users.supervisor" %></h3>
+
+    <% @users_in_course.each do |supervisor| %>
+      <li><%= supervisor.name if supervisor.supervisor? %></li>
+    <% end %>
+
+    <h3><%= t "admin.users.title" %></h3>
+
+    <% @users_in_course.each do |trainee| %>
+      <li>
+        <%= trainee.name if trainee.trainee? %>
+      </li>
+    <% end %>
+    <%= link_to t("courses.add_trainee"),
+      edit_supervisor_course_add_user_courses_path(@course) %>
+  </ul>
+</div>
+<div class="col-md-6 center course-content">
+  <h1><%= @course.name %></h1>
+  <h3>
+    <%= t "subjects.description" %>: 
+    <%= @course.description %>
+  </h3>
+  <h4><%= t "subjects.title" %></h4>
+  <% if @course.course_subjects.any? %>
+    <% @course.course_subjects.each do |course_subject| %>
+      <li>
+        <%= link_to course_subject.subject.name,
+          supervisor_course_course_subject_path(@course, course_subject) %>
+      </li>
+    <% end %>
   <% end %>
 </div>
-<ul class="subjects">
-  <% if @course.course_subjects.any? %>
-    <ol>
-      <% @course.course_subjects.each do |course_subject| %>
-        <li>
-          <%= course_subject.subject.name %>
-        </li>
-      <% end %>
-    </ol>
-  <% end %>
-</ul>

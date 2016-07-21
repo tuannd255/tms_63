@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :courses, only: [:show, :index]
     resources :courses, only: :show do
       resource :add_user_courses, only: [:edit, :update]
+      resources :course_subjects, only: :show
     end
   end
 end
