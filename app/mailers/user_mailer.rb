@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
       @user = user
       @course = course
       mail to: @user.email, subject: t("mail.#{send_email}",
-        content: @course.description)
+        content: @course.name)
     end
   end
 
@@ -18,5 +18,12 @@ class UserMailer < ApplicationMailer
       mail to: @admin.email, subject: t("mail.month_info_corse",
         content: @course.name)
     end
+  end
+
+  def will_finish_in_two_days course
+    @course = course
+    @user = @course.user
+    mail to: @user.email, subject: t("mail.will_finish",
+      content: @course.name)
   end
 end
