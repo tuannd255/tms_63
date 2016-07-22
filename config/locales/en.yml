@@ -114,6 +114,7 @@ en:
     finished: Finished
     not_ready: Course is not readay
   not_authorized: You don't have permition to do this action
+
   subject:
     please_add: Please add Subject
     add_subject: Add Subject
@@ -123,3 +124,12 @@ en:
     finished: Finished
     start_success: Subject started
     start_error: Failed to start subject
+
+  mail:
+    send_email_when_trainee_assigned: Assigned to a course %{content}
+    send_email_when_trainee_removed: Removed from a course %{content}
+    welcome: Hello, %{name}
+    accept_in_course: You had assigned in course %{content}
+    delete_from_course: You had been delete in course %{content}
+    thanks: Thanks for joining and have a great day!
+    blank: ==============================
