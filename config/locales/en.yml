@@ -14,10 +14,11 @@ en:
       edit: Save change
       supervisor: Supervisor
     start: Start
+    course_index: Index course 
     started: Started
     finish: Finish
     finished: Finished
-    course: Courses List
+    course_list: Courses List
     add_user: Add Trainee to Course
     create_course: Create Course
     new_course: New Course
@@ -33,6 +34,14 @@ en:
   destroy:
     button: Delete
     confirm: Are you want delete %{name}
+  supervisor:
+    update_success: Update Success
+    upate_fail: Update Fail
+    start: Start
+    start_course: Start Course
+    started: Started
+    finish: Finish
+    finished: Finished
   devise:
     areyousure: Are you sure?
     back: Back
@@ -98,4 +107,19 @@ en:
     status: Status
     action: Action
     add_trainee: Add trainee
+    please_start: Course don't start. Please start Course!
+    start: Start
+    started: Started
+    finish: Finish
+    finished: Finished
+    not_ready: Course is not readay
   not_authorized: You don't have permition to do this action
+  subject:
+    please_add: Please add Subject
+    add_subject: Add Subject
+  course_subjects:
+    start: Start Subject
+    finish: Finish Subject
+    finished: Finished
+    start_success: Subject started
+    start_error: Failed to start subject

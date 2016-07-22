@@ -37,22 +37,6 @@
       </li>
     <% end %>
   <% end %>
-
-  <% if @course.init? %>
-    <%= form_for [:admin, @course] do |f| %>
-      <%= f.hidden_field :status, value: "start" %>
-      <%= f.submit t("admin.start"), class: "btn btn-success submit-btn" %>
-    <% end %>
-  <% elsif @course.start? %>
-    <%= form_for [:admin, @course] do |f| %>
-      <%= f.hidden_field :status, value: "finish" %>
-      <%= f.submit t("admin.finish"), class: "btn btn-primary submit-btn" %>
-    <% end %>
-  <% else %>
-    <%= link_to t("admin.finished"), admin_courses_path,
-      class: "btn btn-danger submit-btn" %>
-    <br>
-  <% end %>
   <%= link_to t("admin.delete"), [:admin, @course], method: :delete,
     data: {confirm: t("devise.areyousure")},
     class: "btn btn-danger submit-btn" %>

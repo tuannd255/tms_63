@@ -15,9 +15,10 @@
       </li>
     <% end %>
     <%= link_to t("courses.add_trainee"),
-      edit_supervisor_course_add_user_courses_path(@course) %>
+      edit_supervisor_course_add_user_courses_path(@course) if @course.init? %>
   </ul>
 </div>
+
 <div class="col-md-6 center course-content">
   <h1><%= @course.name %></h1>
   <h3>
@@ -31,6 +32,24 @@
         <%= link_to course_subject.subject.name,
           supervisor_course_course_subject_path(@course, course_subject) %>
       </li>
+    <% end %>
+  <% end %>
+  
+  <% if @course.init? %>
+    <%= form_for [:supervisor, @course] do |f| %>
+      <%= f.hidden_field :status, value: "start" %>
+      <%= f.submit t("supervisor.start"), class: "btn btn-primary" %>
+    <% end %>
+  <% elsif @course.start? %>
+    <strong><%= t "admin.started" %></strong>
+    <%= form_for [:supervisor, @course] do |f| %>
+      <%= f.hidden_field :status, value: "finish" %>
+      <%= f.submit t("supervisor.finish"), class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <%= form_for [:supervisor, @course] do |f| %>
+      <% f.submit t("supervisor.finished"), class: "btn btn-danger", 
+        disabled: true %>
     <% end %>
   <% end %>
 </div>
