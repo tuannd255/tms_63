@@ -38,9 +38,12 @@ ActiveRecord::Schema.define(version: 20160714011543) do
     t.string   "name"
     t.text     "description"
     t.integer  "status",      default: 0
+    t.integer  "user_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "courses", ["user_id"], name: "index_courses_on_user_id"
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"

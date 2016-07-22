@@ -113,6 +113,7 @@ en:
     finish: Finish
     finished: Finished
     not_ready: Course is not readay
+    all_supervisor_added: All supervisor hes been added
   not_authorized: You don't have permition to do this action
 
   subject:
@@ -133,3 +134,11 @@ en:
     delete_from_course: You had been delete in course %{content}
     thanks: Thanks for joining and have a great day!
     blank: ==============================
+    month_info_corse: month info of course %{content}
+    mail_month: mail for course's infomation
+    user: User
+    course: "Course: %{content}"
+    subject: Subject
+    description: "Description: %{content}"
+    status: Status
+    subjects: Subjects

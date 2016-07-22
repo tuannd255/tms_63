@@ -7,7 +7,16 @@ class UserMailer < ApplicationMailer
       @user = user
       @course = course
       mail to: @user.email, subject: t("mail.#{send_email}",
-        content: course.description)
+        content: @course.description)
+    end
+  end
+
+  def mail_month
+    Course.all.each do |course|
+      @admin = course.user
+      @course = course
+      mail to: @admin.email, subject: t("mail.month_info_corse",
+        content: @course.name)
     end
   end
 end
