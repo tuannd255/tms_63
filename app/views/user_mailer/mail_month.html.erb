@@ -1,0 +1,23 @@
+<h1><%= @admin.name %></h1>
+<h2><%= t "mail.course", content: @course.name %></h2><hr />
+<% if @course.user_courses.any? %>
+  <% @course.user_courses.each do |user_course| %>
+    <% if user_course.user.trainee? %>
+      <h3>
+        <%= t "mail.user" %>: 
+        <%= user_course.user.name %>
+      </h3>
+      <h3><%= t "mail.subjects" %></h3>
+      <% if user_course.user_subjects.any? %>
+        <% user_course.user_subjects.each do |trainee_subject| %>
+          <h4>
+            <%= t "mail.subject" %>: 
+            <%= trainee_subject.subject.description %>
+          </h4>
+          <p><%= t("mail.description",
+            content: trainee_subject.subject.description) %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

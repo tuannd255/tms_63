@@ -21,6 +21,8 @@ gem "cancancan"
 gem "sinatra", require: false
 gem "letter_opener"
 gem "launchy"
+gem "whenever", require: false
+gem "daemons"
 
 group :development, :test do
   gem "sqlite3", "1.3.9"

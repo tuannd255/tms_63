@@ -17,6 +17,7 @@ class Admin::CoursesController < ApplicationController
 
   def create
     if @course.save
+      @course.add_admin_to_course current_user.id
       flash[:success] = t "admin.success"
       redirect_to admin_courses_path
     else
