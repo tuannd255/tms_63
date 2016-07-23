@@ -1,0 +1,10 @@
+<% @courses.each do |course| %>
+  <tr>
+    <td><%= link_to course.name, course %></td>
+    <td><%= course.description %></td>
+    <td>
+      <%= course.status %>
+    </td>
+  </tr>
+<% end %>
+<%= will_paginate %>
