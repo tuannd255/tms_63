@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require datepicker
 //= require turbolinks
 //= require_tree .
 
@@ -25,3 +26,16 @@ var click = function(){
 };
 
 $(document).on('page:change load', click);
+
+function datepick(){
+  $('.input-daterange').datepicker({
+    format: 'yyyy-mm-dd'
+  });
+};
+
+$(document).on('ready', function() {
+  datepick();
+});
+$(document).on('page:change load', function() {
+  datepick();
+});
