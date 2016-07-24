@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   load_and_authorize_resource
+  before_action :get_role, only: [:new, :edit]
 
   def index
   end
@@ -13,6 +14,7 @@ class Admin::UsersController < ApplicationController
         email: @user.email
       redirect_to admin_users_path
     else
+      get_role
       flash[:danger] = t "admin.users.create_fail"
       render :new
     end
@@ -36,6 +38,7 @@ class Admin::UsersController < ApplicationController
       flash[:success] = t "successupdate"
       redirect_to admin_users_path
     else
+      get_role
       flash[:danger] = t "failupdate"
       render :edit
     end
@@ -44,6 +47,10 @@ class Admin::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit :name, :email, :password,
-      :password_confirmation
+      :password_confirmation, :role
+  end
+
+  def get_role
+    @roles = User.roles
   end
 end

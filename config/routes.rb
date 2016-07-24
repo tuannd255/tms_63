@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   get "help" => "static_pages#help"
+  resources :users, only: :show
   namespace :admin do
     root "static_pages#home"
     authenticate :user, ->u{u.admin?} do

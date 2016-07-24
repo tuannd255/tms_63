@@ -1,0 +1,40 @@
+<%= form_for [:admin, @user] do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <i><%= t "devise.registrations.leave_blank" %></i>
+    <% if @minimum_password_length %>
+      <em><%= t "devise.registrations.minimum_password_length",
+        minpasslength: @minimum_password_length %></em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "off",
+      class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "off",
+      class: "form-control" %>
+  </div>
+
+  <%= f.label :role %>
+  <%= f.select :role, @roles.collect {|key, value| [t(key), key]}, {},
+    class: "form-control" %>
+
+  <div class="actions">
+    <%= f.submit t("devise.registrations.#{params[:action]}"),
+      class: "btn btn-primary" %>
+  </div>
+<% end %>
+<p class="center">
+  <%= link_to t("back"), :back, class: "btn btn-info back" %>
+</p>
