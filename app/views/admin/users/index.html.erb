@@ -1,5 +1,9 @@
-<div class="users center">
+<div class="row center">
   <h1><%= t "admin.users.all" %></h1>
   <h2><%= link_to t("admin.users.create_user"), new_admin_user_path %></h2>
-  <%= render @users %>
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table table-hover table-striper">
+      <%= render @users %>
+    </table>
+  </div>
 </div>

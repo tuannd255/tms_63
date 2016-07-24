@@ -42,7 +42,6 @@ en:
     add_supervisor: Add supervisor
     add_trainee: Add trainee
     all_supervisor_added: All supervisor hes been added
-    end_date: End date
     finish: Finish
     finished: Finished
     not_ready: Course is not readay
@@ -102,7 +101,6 @@ en:
     user: User
     welcome: Hello, %{name}
     will_finish: Course %{content} is finishing in 2 days
-
   not_authorized: You don't have permition to do this action
   password_confirmation: Password confirmation
   project_title: Project 2
@@ -143,29 +141,7 @@ en:
   tasks:
     name: Name
     no_task: The subject not have task
-  courses:
-    add_supervisor: Add supervisor
-    title: Courses
-    status: Status
-    action: Action
-    add_trainee: Add trainee
-    please_start: Course don't start. Please start Course!
-    start: Start
-    started: Started
-    finish: Finish
-    finished: Finished
-    not_ready: Course is not readay
-    all_supervisor_added: All supervisor hes been added
-  not_authorized: You don't have permition to do this action
-
-  subject:
-    please_add: Please add Subject
-    add_subject: Add Subject
-  course_subjects:
-    start: Start Subject
-    finish: Finish Subject
-    finished: Finished
-    start_success: Subject started
-    start_error: Failed to start subject
-
   update_profile: Update
+  users:
+    profile: Profile
+    setting: Setting

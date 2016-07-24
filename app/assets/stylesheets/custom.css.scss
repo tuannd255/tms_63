@@ -145,15 +145,7 @@ input {
   }
 }
 .user-edit {
-  width: 25%;
-}
-.users {
-  table {
-    width: 100%;
-    td {
-      border: 1px dotted #777777!important;
-    }
-  }
+  width: 33%;
 }
 .alert-notice {
   background-color: #dff0d8;
@@ -252,4 +244,7 @@ input {
 }
 .edit_user_task {
   display: inline-block;
+}
+.back {
+  margin: 5px;
 }
