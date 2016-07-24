@@ -1,42 +1,30 @@
 <% provide :title, @course.name %>
 <h1><%= @course.name %></h1>
-<div class="row">
-  <div class="col-md-5 panel panel-default">
-    <div class="text-center">
-      <h3><%= t "admin.all_trainee" %></h3>
-      <ul class="list-unstyled">
-        <% @course.users.trainee.each do |user| %>
-          <div class="input-group fields">
-            <span class="input-group-addon">
-              <span><%= link_to user.name, "#" %></span>
-            </span>
-          </div>
-        <% end %>
-      </ul>
-      <hr/>
-    </div>
-  </div>
-  <div class="col-md-7 panel panel-default">
-    <div class="col-md-offset-1 panel-default">
-      <h3><%= t "admin.add_user", name: @course.name %></h3>
-      <hr/>
-      <%= form_for @course,
-        url: supervisor_course_add_user_courses_path(@course) do |f| %>
-        <%= f.collection_check_boxes :user_ids, @users_not_in_course,
-          :id, :name do |b| %>
-          <div class="checkbox">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-        <%= f.collection_check_boxes :user_ids, @users_in_course, :id, :name do |b| %>
-          <div class="hidden">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-        <%= f.submit t("admin.users.update"), class: "btn btn-primary" %>
+<div class="col-md-6 col-md-offset-3">
+  <% if @users_not_in_course.any? %>
+    <h3 class="center"><%= t "admin.add_user", name: @course.name %></h3>
+    <hr />
+    <%= form_for @course,
+      url: supervisor_course_add_user_courses_path(@course) do |f| %>
+      <%= f.collection_check_boxes :user_ids, @users_not_in_course,
+        :id, :name do |b| %>
+        <div class="checkbox">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
       <% end %>
-    </div>
-  </div>
+      <%= f.collection_check_boxes :user_ids, @users_in_course, :id, :name do |b| %>
+        <div class="hidden">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+      <%= f.submit t("admin.users.update"), class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <h3 class="center"><%= t "admin.all_user_added", name: @course.name %></h3>
+    <p class="center">
+      <%= link_to t("back"), :back, class: "btn btn-info back" %>
+    </p>
+  <% end %>
 </div>

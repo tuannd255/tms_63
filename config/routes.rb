@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   end
   namespace :supervisor do
     resources :course_subjects, only: [:update, :index, :show]
+    resources :user_courses, only: :destroy
+    resources :users, only: :show
     resources :courses, only: [:show, :index, :update]
     authenticate :user, ->u{u.supervisor?} do
       mount Sidekiq::Web => "/sidekiq"

@@ -1,2 +1,26 @@
-<h1><%= @course.name %></h1>
-<%= render "assign_form"%>
+<% provide :title, @course.name.capitalize %>
+<h1><%= @course.name.capitalize %></h1>
+<%= form_for [:admin, @course],
+  url: admin_course_assign_trainees_path(@course) do |f| %>
+  <div class="col-md-6 col-md-offset-3">
+    <h4 class="center"><%= t "admin.users.supervisor" %></h4><hr />
+    <% if @supervisor_not_in_courses.any? %>
+      <%= f.collection_check_boxes :user_ids, @supervisor_not_in_courses, :id,
+        :name do |s| %>
+        <div class="checkbox">
+          <%= s.check_box %>
+          <%= s.label %>
+        </div>
+      <% end %>
+    <% else %>
+      <h4 class="center"><%= t "courses.all_supervisor_added" %></h4>
+    <% end %>
+    <%= f.collection_check_boxes :user_ids, @user_courses, :id, :name do |b| %>
+      <div class="checkbox hidden">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
+    <%= f.submit t("admin.users.update"), class: "btn btn-primary" %>
+  </div>
+<% end %>

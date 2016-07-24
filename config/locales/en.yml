@@ -3,6 +3,7 @@ en:
     add_user: Add Trainee to Course
     admin: Admin
     all_trainee: All Trainee
+    all_trainee_added: All trainee has been added
     course_index: Index course
     course_list: Courses List
     create_course: Create Course
@@ -28,7 +29,7 @@ en:
       new: Create user
       supervisor: Supervisor
       title: Users
-      update: Add / Remove
+      update: Add
       update_button: Update
       update_user: Update User
   course_subjects:

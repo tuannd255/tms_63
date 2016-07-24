@@ -12,8 +12,11 @@ class User < ActiveRecord::Base
 
   enum role: {trainee: 0, supervisor: 1, admin: 2}
 
-  scope :not_in_course, -> course_id {where "id not in (select user_id
+  scope :not_in_course, ->course_id {where "id not in (select user_id
     from user_courses where course_id = ?)", course_id}
+  scope :avaiable_user, ->course_id {where "id NOT IN (SELECT user_id FROM
+    user_courses WHERE course_id != ? AND (course_id IN (SELECT id FROM
+    courses where status = 1 OR status = 0 )))", course_id}
 
   private
   def password_required?
