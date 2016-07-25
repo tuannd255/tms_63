@@ -1,7 +1,7 @@
 <% provide :title, @course.name %>
 <h1><%= @course.name %></h1>
 <div class="center"><%= @course.description %></div>
-<div class="subject"> 
+<div class="subject">
   <ul>
     <% @user_course.user_subjects.each do |user_subject| %>
       <div class="col-md-6">
@@ -18,7 +18,7 @@
             <% if task.user_tasks.any? %>
               <div class="btn btn-danger hl-button2">
                 <%= t "admin.finished" %>
-              </div>            
+              </div>
             <% else %>
               <%= form_for :user_task, html: {class: "btn"}, 
                 url: course_user_tasks_path(@course) do |f| %>
@@ -32,6 +32,5 @@
         <% end %>
       </div>
     <% end %>
-    <div class="clear_fix"></div>
   </ul>
 </div>

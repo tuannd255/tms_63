@@ -1,4 +1,6 @@
 en:
+  activities:
+    title: Activities
   admin:
     add_user: Add Trainee to Course
     admin: Admin
@@ -28,7 +30,7 @@ en:
       edit: Save change
       new: Create user
       supervisor: Supervisor
-      title: Users
+      title: Trainee
       update: Add
       update_button: Update
       update_user: Update User
@@ -83,6 +85,7 @@ en:
   home:
     content: Framgia Training System
     title: Home
+    view_detail: View Details
   log_in: Log in
   log_out: Log out
   mail:
