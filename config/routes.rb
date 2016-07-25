@@ -33,6 +33,6 @@ Rails.application.routes.draw do
   end
   resources :courses, only: [:show, :index]
   resources :courses, only: :show do
-    resources :user_tasks, only: [:update]
+    resources :user_tasks, only: :create
   end
 end

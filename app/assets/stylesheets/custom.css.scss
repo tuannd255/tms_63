@@ -240,6 +240,13 @@ input {
   }
 }
 .hl-button {
+  display: inline-block;
+  margin: 5px;
+  width: 275px;
+}
+.hl-button2 {
+  display: inline-block;
+  margin: 20px;
   width: 275px;
 }
 .edit_user_task {
@@ -250,4 +257,7 @@ input {
 }
 .user_info {
   margin-top: 50px;
+}
+.progress{
+  width: 350px  
 }

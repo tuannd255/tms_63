@@ -6,7 +6,7 @@ class Supervisor::CoursesController < ApplicationController
   end
 
   def show
-    @users_in_course = @course.user_courses.includes :users
+    @users_in_course = @course.user_courses.includes :user
   end
 
   def update

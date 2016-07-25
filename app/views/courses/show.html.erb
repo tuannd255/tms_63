@@ -1,26 +1,37 @@
 <% provide :title, @course.name %>
 <h1><%= @course.name %></h1>
 <div class="center"><%= @course.description %></div>
+<div class="subject"> 
   <ul>
     <% @user_course.user_subjects.each do |user_subject| %>
-      <h3><li><%= user_subject.subject.name %></li></h3>
-      <% user_subject.user_tasks.each do |user_task|%>
-        <div>
-          <span><%= user_task.task.name %></span>
-          <% unless user_task.status %>
-            <%= form_for [@course, user_task] do |f|%>
-              <span>
-                <%= f.hidden_field :status, value: true %>
-                <%= f.submit t("admin.finish"), 
-                  class: "btn btn-primary hl-button" %>
-              </span>
+      <div class="col-md-6">
+        <h3><li><%= user_subject.subject.name %></li></h3>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" 
+            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" 
+            style="width:<%= user_subject.progress %>%">
+            <span><%= user_subject.progress %> %</span>
+          </div>
+        </div><% user_subject.subject.tasks.each do |task| %>
+          <div>
+            <span><%= task.name %></span>
+            <% if task.user_tasks.any? %>
+              <div class="btn btn-danger hl-button2">
+                <%= t "admin.finished" %>
+              </div>            
+            <% else %>
+              <%= form_for :user_task, html: {class: "btn"}, 
+                url: course_user_tasks_path(@course) do |f| %>
+                <%= f.hidden_field :task_id, value: task.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :user_subject_id, value: user_subject.id %>
+                <%= f.submit t("admin.finish"), class: "btn btn-primary hl-button" %>
+              <% end %>
             <% end %>
-          <% else %>
-            <div class="btn btn-danger submit-btn">
-              <%= t "admin.finished" %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
+    <div class="clear_fix"></div>
   </ul>
+</div>
