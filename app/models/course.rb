@@ -15,8 +15,6 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :subjects, allow_destroy: true
   accepts_nested_attributes_for :user_courses, allow_destroy: true
 
-  after_create :schedule_mail_to_notify_finish_course
-
   enum status: [:init, :start, :finish]
 
   def add_admin_to_course id

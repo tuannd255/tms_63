@@ -267,6 +267,12 @@ input {
     }
   }
 }
+.panel {
+  margin-top: 50px;
+  .panel-heading {
+    height: 99px;
+  }
+}
 .panel-footer {
   cursor: pointer;
 }

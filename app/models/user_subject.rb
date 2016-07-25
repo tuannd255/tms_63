@@ -6,6 +6,10 @@ class UserSubject < ActiveRecord::Base
   has_many :user_tasks, dependent: :destroy
 
   def progress
-    Settings.progress * self.user_tasks.size / self.subject.tasks.size
+    if self.subject.tasks.any?
+      Settings.progress * self.user_tasks.size / self.subject.tasks.size
+    else
+      return 0
+    end
   end
 end

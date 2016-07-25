@@ -1,7 +1,7 @@
 <tr>
   <td class="user-edit"><%= link_to user.name, user_path(user) %></td>
   <td class="user-edit"><%= user.email %></td>
-  <% unless user.admin? %>
+  <% unless (can :edit, user_id: current_user.id) %>
     <td class="user-edit">
       <%= link_to t(:edit), edit_admin_user_path(user),
         class: "btn btn-primary" %>

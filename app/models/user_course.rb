@@ -5,8 +5,6 @@ class UserCourse < ActiveRecord::Base
   has_many :user_subjects, dependent: :destroy
 
   after_create :create_user_subject
-  after_create :send_mail_assign
-  before_destroy :send_mail_delete
 
   private
   def create_user_subject
@@ -21,7 +19,7 @@ class UserCourse < ActiveRecord::Base
       end
     end
   end
-  
+
   def send_mail_assign
     TraineeWorker.perform_async TraineeWorker::ASSIGN_TRAINEE,
       self.user_id, self.course_id

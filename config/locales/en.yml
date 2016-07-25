@@ -71,6 +71,7 @@ en:
     contain: The form contains
     number: errors
   failupdate: Update fail
+  file: Profile
   flash:
     course_empty: Course not exist
     not_valid_deadline: Not valid deadline
@@ -83,7 +84,7 @@ en:
   help:
     title: Help
   home:
-    content: Framgia Training System
+    content: Training System Manage
     title: Home
     view_detail: View Details
   log_in: Log in

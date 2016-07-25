@@ -10,7 +10,7 @@
       </p>
     </div>
   </div>
-  <div class="course col-md-8 center">
+  <div class="course col-md-4 col-md-offset-2 center">
     <% @user_courses.each do |user_course| %>
       <% if user_course.course.start? %>
         <h1><%= user_course.course.name %></h1>
