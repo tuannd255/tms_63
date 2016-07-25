@@ -258,6 +258,15 @@ input {
 .user_info {
   margin-top: 50px;
 }
-.progress{
-  width: 350px  
+.progress {
+  width: 350px;
+  .panel {
+    margin-top: 100px;
+    .panel-heading {
+      height: 99px;
+    }
+  }
+}
+.panel-footer {
+  cursor: pointer;
 }

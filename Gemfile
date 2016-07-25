@@ -23,6 +23,7 @@ gem "letter_opener"
 gem "launchy"
 gem "whenever", require: false
 gem "daemons"
+gem "kaminari"
 
 group :development, :test do
   gem "sqlite3", "1.3.9"

@@ -1,2 +1,2 @@
 <% provide :title, t("home.title") %>
-<h1><%= t "home.content" %></h1>
+<%= render "#{current_user.role}_home" if user_signed_in? %>
