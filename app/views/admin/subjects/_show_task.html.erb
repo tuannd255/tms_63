@@ -8,4 +8,9 @@
   <% else %>
     <strong><%= t "tasks.no_task" %></strong>
   <% end %>
+  <%= link_to t(:edit_button), edit_admin_subject_path(subject),
+    class: "btn btn-primary" %>
+  <%= link_to t("destroy.button"), admin_subject_path(subject),
+    method: :delete, class: "btn btn-danger",
+    data: {confirm: t("destroy.confirm", name: subject.name)} %>
 </td>

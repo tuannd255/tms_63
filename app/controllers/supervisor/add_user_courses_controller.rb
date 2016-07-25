@@ -3,13 +3,14 @@ class Supervisor::AddUserCoursesController < ApplicationController
 
   def edit
     @users_in_course = @course.users
-    @users_not_in_course = User.not_in_course(@course).trainee
+    @users = User.not_in_course(@course).trainee
+    @users_not_in_course = @users.avaiable_user @course.id
   end
 
   def update
     if @course.update_attributes course_params
       flash[:success] = t "admin.update_success"
-      redirect_to edit_supervisor_course_add_user_courses_path @course
+      redirect_to supervisor_course_path @course
     else
       flash[:danger] = t "admin.update_fail"
       render :edit

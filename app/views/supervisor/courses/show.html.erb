@@ -1,17 +1,23 @@
-<% provide :title, @course.name %>
+<% provide :title, @course.name.capitalize %>
 <div class="col-md-6 center course-content">
   <ul>
     <h3><%= t "admin.users.supervisor" %></h3>
 
     <% @users_in_course.each do |supervisor| %>
-      <li><%= supervisor.name if supervisor.supervisor? %></li>
+      <li><%= supervisor.user.name if supervisor.user.supervisor? %></li>
     <% end %>
 
     <h3><%= t "admin.users.title" %></h3>
 
     <% @users_in_course.each do |trainee| %>
       <li>
-        <%= trainee.name if trainee.trainee? %>
+        <% if trainee.user.trainee? %>
+          <%= link_to trainee.user.name, supervisor_user_path(trainee.user) %>
+          <%= link_to t("destroy.button"),
+            supervisor_user_course_path(trainee), method: :delete,
+            data: {confirm: t("destroy.confirm", name: trainee.user.name)},
+            class: "btn btn-danger" %>
+        <% end %>
       </li>
     <% end %>
     <%= link_to t("courses.add_trainee"),
@@ -34,7 +40,7 @@
       </li>
     <% end %>
   <% end %>
-  
+
   <% if @course.init? %>
     <%= form_for [:supervisor, @course] do |f| %>
       <%= f.hidden_field :status, value: "start" %>

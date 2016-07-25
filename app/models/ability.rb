@@ -11,6 +11,7 @@ class Ability
       end
     elsif user.supervisor?
       can [:add, :destroy], UserCourse
+      can :read, User
       can [:read, :update], [Course, CourseSubject]
       if namespace == "admin"
         cannot :manage, :all
