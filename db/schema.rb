@@ -90,9 +90,8 @@ ActiveRecord::Schema.define(version: 20160714011543) do
     t.integer  "task_id"
     t.integer  "user_id"
     t.integer  "user_subject_id"
-    t.boolean  "status",          default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "user_tasks", ["task_id"], name: "index_user_tasks_on_task_id"

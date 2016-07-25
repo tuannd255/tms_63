@@ -18,7 +18,7 @@ class Ability
       end
     else
       can [:read], [Course, User]
-      can [:read, :update], UserTask
+      can [:create], UserTask
       if namespace == "supervisor"
         cannot :manage, :all
       elsif namespace == "admin"
