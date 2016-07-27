@@ -1,13 +1,8 @@
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= link_to course.name, admin_course_path(course) %></td>
-    <td><%= link_to course.description, admin_course_path(course) %></td>
-    <td>
-      <%= link_to t("admin.edit"), edit_admin_course_path(course),
-        class: "btn btn-primary" %>
-    </td>
-    <td>
-      <%= course.status %>
-    </td>
-  </tr>
-<% end %>
+<tr class="<%= t "courses.#{course.status}" %>">
+  <td><%= link_to course.name,admin_course_path(course) %></td>
+  <td><%= link_to course.description, admin_course_path(course) %></td>
+  <td>
+    <%= course.subjects.size %>
+  </td>
+  <td><span class="<%= course.status %>"><%= course.status %></span></td>
+</tr>

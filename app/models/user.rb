@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   scope :avaiable_user, ->course_id {where "id NOT IN (SELECT user_id FROM
     user_courses WHERE course_id != ? AND (course_id IN (SELECT id FROM
     courses where status = 1 OR status = 0 )))", course_id}
+  scope :not_admin, ->{where.not role: 2}
 
   private
   def password_required?

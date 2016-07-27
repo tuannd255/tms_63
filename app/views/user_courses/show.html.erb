@@ -1,0 +1,122 @@
+<% provide :title, @course.name %>
+<div class="col-md-4 col-xs-4">
+  <div class="courses user-course">
+    <div class="card">
+      <h1><%= @course.name %></h1>
+      <h4>
+        <strong><%= t "subjects.description" %>: </strong>
+        <%= @course.description %><br>
+        <strong><%= t "courses.status" %>: </strong>
+        <span class="<%= @course.status %>"><%= @course.status %></span>
+      </h4>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-8 col-xs-8" id="courses-tab">
+  <div class="courses">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#subjects">
+        <%= t "subjects.title" %></a></li>
+      <li><a data-toggle="tab" href="#trainees">
+        <%= t "admin.users.trainee" %></a></li>
+      <li><a data-toggle="tab" href="#supervisors">
+        <%= t "admin.users.supervisor" %></a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="trainees" class="tab-pane fade">
+        <div class="card">
+          <div class="table-responsive">
+            <h3><%= t "admin.users.trainee" %></h3>
+            <table class="table table-bordred table-striped">
+              <thead>
+                <th><%= t "subjects.name" %></th>
+                <th><%= t "users.email" %></th>
+              </thead>
+              <tbody>
+                <% @course.users.trainee.each do |trainee| %>
+                    <tr>
+                      <td><%= link_to trainee.name, user_path(trainee) %></td>
+                      <td><%= trainee.email %></td>
+                    </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="subjects" class="tab-pane fade in active">
+        <div class="card">
+          <div class="table-responsive">
+            <h3><%= t "view.supervisor.course.show.subjects_on_course" %></h3>
+            <table class="table table-bordred table-striped">
+              <thead>
+                <th><%= t "subjects.name" %></th>
+                <th><%= t "courses.status" %></th>
+                <% if current_user.trainee? %>
+                  <th><%= t "courses.status" %></th>
+                <% end %>
+              </thead>
+              <tbody>
+                <% @subjects.each do |subject, user_subject, course_subject| %>
+                  <tr>
+                    <% if current_user == @user_course.user ||
+                      current_user.supervisor? %>
+                      <% if user_subject.present? %>
+                        <td>
+                          <%= link_to subject.name,
+                            user_course_user_subject_path(@user_course,
+                            user_subject) %>
+                        </td>
+                      <% else %>
+                        <td>
+                          <%= link_to subject.name,
+                          supervisor_course_subject_path(subject) %>
+                        </td>
+                      <% end %>
+                    <% else %>
+                      <td><%= subject.name %></td>
+                    <% end %>
+                    <td>
+                      <span class="label">
+                        <%#= course_subject.status_content %>
+                      </span>
+                    </td>
+                    <td>
+                      <% if user_subject.present? && current_user.trainee? %>
+                        <span class="label%>">
+                          <%#= user_subject.status_content %>
+                        </span>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="supervisors" class="tab-pane fade">
+        <div class="card">
+          <div class="table-responsive">
+            <h3><%= t "admin.users.supervisor" %></h3>
+            <table class="table table-bordred table-striped">
+              <thead>
+                <th><%= t "users.name" %></th>
+                <th><%= t "users.email" %></th>
+              </thead>
+              <tbody>
+                <% @course.users.supervisor.each do |supervisor| %>
+                  <tr>
+                    <td><%= link_to supervisor.name, supervisor %></td>
+                    <td><%= supervisor.email %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

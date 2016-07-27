@@ -3,7 +3,8 @@ class Admin::UsersController < ApplicationController
   before_action :get_role, only: [:new, :edit]
 
   def index
-    @users = @users.page params[:page]
+    @admins = @users.admin.page params[:page]
+    @users = @users.not_admin.page params[:page]
   end
 
   def new

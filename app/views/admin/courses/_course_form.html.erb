@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-2">
     <%= form_for [:admin, @course], required: true do |f| %>
       <%= render "devise/shared/error_messages", object: @course %>
 
@@ -22,9 +22,10 @@
       </div>
 
       <h4><%= f.label :subjects %></h4>
+      <input type="checkbox" class="checkall checkbox"/>
       <%= f.collection_check_boxes(:subject_ids, @subjects,
         :id, :name) do |s| %>
-        <div class="checkbox">
+        <div class="checkbox label-checkbox">
           <%= s.check_box %>
           <%= s.label %>
         </div>

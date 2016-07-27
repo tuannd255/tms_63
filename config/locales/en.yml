@@ -16,7 +16,7 @@ en:
     edit: Edit course
     finish: Finish
     finished: Finished
-    new_course: New Course
+    newcourse: New course
     save: Save
     start: Start
     started: Started
@@ -24,16 +24,26 @@ en:
     update_fail: Update Fail
     update_success: Update Success
     users:
+      admin: Admin
       all: All users
       create_fail: Create fail
-      created: "Created %{name}, email: %{email}"
+      created: 'Created %{name}, email: %{email}'
       edit: Save change
+      email: Email
+      end_subject: End subject
+      name: Name
       new: Create user
+      start_subject: Start subject
       supervisor: Supervisor
-      title: Trainee
+      title: Users
+      trainee: Trainee
       update: Add
       update_button: Update
       update_user: Update User
+  arrow-1: http://i.imgur.com/vcGtMqD.png
+  back: Back
+  course:
+    danger: danger
   course_subjects:
     finish: Finish Subject
     finished: Finished
@@ -45,14 +55,19 @@ en:
     add_supervisor: Add supervisor
     add_trainee: Add trainee
     all_supervisor_added: All supervisor hes been added
-    finish: Finish
+    create: New course
+    delete: Delete course
+    finish: danger
     finished: Finished
+    init: normal
     not_ready: Course is not readay
     please_start: Course don't start. Please start Course!
-    start: Start
+    start: primary
     started: Started
     status: Status
+    subjects: Subjects No
     title: Courses
+    trainee: Trainee No
   destroy:
     button: Delete
     confirm: Are you want delete %{name}
@@ -83,17 +98,18 @@ en:
   help:
     title: Help
   home:
-    content: Framgia Training System
-    title: Home
+    content: TMS_63
+    title: Dashboard
     view_detail: View Details
+  image_2: https://www.110220volts.com/Merchant2/Sales-Page/red-arrow-up-left.gif
   log_in: Log in
   log_out: Log out
   mail:
     accept_in_course: You had assigned in course %{content}
     blank: ==============================
-    course: "Course: %{content}"
+    course: 'Course: %{content}'
     delete_from_course: You had been delete in course %{content}
-    description: "Description: %{content}"
+    description: 'Description: %{content}'
     mail_month: mail for course's infomation
     month_info_corse: month info of course %{content}
     send_email_when_trainee_assigned: Assigned to a course %{content}
@@ -117,6 +133,7 @@ en:
   subject:
     add_subject: Add Subject
     please_add: Please add Subject
+    tasks: Task No
   subjects:
     action: Action
     add_task: Add another task
@@ -125,6 +142,7 @@ en:
     description: Description
     edit: Edit subject
     edit_success: Edit success
+    ended: You finished subject
     name: Name
     new: New subject
     remove_task: Remove task
@@ -145,7 +163,15 @@ en:
   tasks:
     name: Name
     no_task: The subject not have task
+    title: Task
+    finish: Subject ended. You have completed %{count}% this subject
   update_profile: Update
+  user_help1: Hello %{name}, welcome to training management system, you have %{count} courses. Click to...with start
+  user_help2: This is your course and properties. Click to name of course to be continue...
   users:
+    create: New user
+    email: Email
+    my_course: Course of %{name}
+    name: Name
     profile: Profile
     setting: Setting

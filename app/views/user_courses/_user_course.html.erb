@@ -1,0 +1,9 @@
+<tr class="<%= t "courses.#{user_course.course.status}" %>">
+  <td><%= link_to user_course.course.name,
+    user_course_path(user_course) %></td>
+  <td><%= user_course.course.description %></td>
+  <td><%= user_course.course.users.trainee.size %></td>
+  <td>
+    <%= user_course.course.status %>
+  </td>
+</tr>

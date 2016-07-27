@@ -1,61 +1,75 @@
 <% provide :title, @course.name.capitalize %>
-<div class="col-md-6 center course-content">
-  <ul>
-    <h3><%= t "admin.users.supervisor" %></h3>
-
-    <% @users_in_course.each do |supervisor| %>
-      <li><%= supervisor.user.name if supervisor.user.supervisor? %></li>
-    <% end %>
-
-    <h3><%= t "admin.users.title" %></h3>
-
-    <% @users_in_course.each do |trainee| %>
-      <li>
-        <% if trainee.user.trainee? %>
-          <%= link_to trainee.user.name, supervisor_user_path(trainee.user) %>
-          <%= link_to t("destroy.button"),
-            supervisor_user_course_path(trainee), method: :delete,
-            data: {confirm: t("destroy.confirm", name: trainee.user.name)},
-            class: "btn btn-danger" %>
+<div class="course-content">
+  <div class="col-md-7 col-xs-7 col-md-offset-1 course-info">
+    <div class="courses">
+      <h1><%= @course.name %></h1>
+      <h2 class="center">
+        <%= t "subjects.description" %>: 
+        <%= @course.description %>
+      </h2>
+      <div id="course-info">
+        <h3><b><%= t "subjects.title" %></b></h3>
+        <% if @course.course_subjects.any? %>
+          <% @course.course_subjects.each do |course_subject| %>
+            <li>
+              <%= link_to course_subject.subject.name,
+                supervisor_course_course_subject_path(@course, course_subject) %>
+            </li>
+          <% end %>
         <% end %>
-      </li>
-    <% end %>
-    <%= link_to t("courses.add_trainee"),
-      edit_supervisor_course_add_user_courses_path(@course) if @course.init? %>
-  </ul>
-</div>
 
-<div class="col-md-6 center course-content">
-  <h1><%= @course.name %></h1>
-  <h3>
-    <%= t "subjects.description" %>: 
-    <%= @course.description %>
-  </h3>
-  <h4><%= t "subjects.title" %></h4>
-  <% if @course.course_subjects.any? %>
-    <% @course.course_subjects.each do |course_subject| %>
-      <li>
-        <%= link_to course_subject.subject.name,
-          supervisor_course_course_subject_path(@course, course_subject) %>
-      </li>
-    <% end %>
-  <% end %>
+        <% if @course.init? %>
+          <%= form_for [:supervisor, @course] do |f| %>
+            <%= f.hidden_field :status, value: "start" %>
+            <%= f.submit t("supervisor.start"),
+              class: "btn btn-primary submit-btn" %>
+          <% end %>
+        <% elsif @course.start? %>
+          <strong><%= t "admin.started" %></strong>
+          <%= form_for [:supervisor, @course] do |f| %>
+            <%= f.hidden_field :status, value: "finish" %>
+            <%= f.submit t("supervisor.finish"),
+              class: "btn btn-primary submit-btn" %>
+          <% end %>
+        <% else %>
+          <%= form_for [:supervisor, @course] do |f| %>
+            <% f.submit t("supervisor.finished"),
+              class: "btn btn-danger submit-btn",
+              disabled: true %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xs-4 course-user">
+    <div class="user-course">
+      <h3><%= t "admin.users.supervisor" %></h3>
 
-  <% if @course.init? %>
-    <%= form_for [:supervisor, @course] do |f| %>
-      <%= f.hidden_field :status, value: "start" %>
-      <%= f.submit t("supervisor.start"), class: "btn btn-primary" %>
-    <% end %>
-  <% elsif @course.start? %>
-    <strong><%= t "admin.started" %></strong>
-    <%= form_for [:supervisor, @course] do |f| %>
-      <%= f.hidden_field :status, value: "finish" %>
-      <%= f.submit t("supervisor.finish"), class: "btn btn-primary" %>
-    <% end %>
-  <% else %>
-    <%= form_for [:supervisor, @course] do |f| %>
-      <% f.submit t("supervisor.finished"), class: "btn btn-danger", 
-        disabled: true %>
-    <% end %>
-  <% end %>
+      <% @users_in_course.each do |supervisor| %>
+        <li><%= link_to supervisor.user.name,
+          user_path(supervisor.user) if supervisor.user.supervisor? %></li>
+      <% end %>
+
+      <h3><%= t "admin.users.title" %></h3>
+      <% @users_in_course.each do |trainee| %>
+        <% if trainee.user.trainee? %>
+          <li class="row">
+            <div class="col-md-6 col-xs-6">
+              <%= link_to trainee.user.name,
+                supervisor_user_path(trainee.user) %>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <%= link_to t("destroy.button"),
+                supervisor_user_course_path(trainee), method: :delete,
+                data: {confirm: t("destroy.confirm", name: trainee.user.name)},
+                class: "btn btn-danger user-delete" %>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+      <%= link_to t("courses.add_trainee"),
+        edit_supervisor_course_add_user_courses_path(@course),
+        class: "btn btn-info" if @course.init? %>
+    </div>
+  </div>
 </div>

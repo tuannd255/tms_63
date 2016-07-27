@@ -9,4 +9,8 @@ class Subject < ActiveRecord::Base
 
   accepts_nested_attributes_for :tasks, allow_destroy: true,
     reject_if: lambda {|a| a[:name].blank?}
+
+  def check_status course_id
+    self.course_subjects.find_by course_id: course_id, subject_id: self.id
+  end
 end

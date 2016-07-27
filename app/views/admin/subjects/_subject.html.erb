@@ -1,12 +1,8 @@
 <tr>
-  <td class="subject-content"><%= link_to subject.name,
-    "#", class: "show-subject", data: {id: subject.id} %></td>
-  <td class="subject-content"><%= subject.description %></td>
-  <td class="subject-content">
-    <%= button_tag t("subjects.show"), class: "btn btn-primary show-subject",
-      data: {id: subject.id} %>
+  <td><%= link_to subject.name,
+    admin_subject_path(subject), class: "show-subject" %></td>
+  <td><%= subject.description %></td>
+  <td>
+    <%= subject.tasks.size %>
   </td>
-</tr>
-<tr class="task-subject" data-task="<%= subject.id %>">
-  <%= render "show_task", subject: subject %>
 </tr>

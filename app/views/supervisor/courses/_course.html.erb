@@ -1,7 +1,8 @@
-<tr>
+<tr class="<%= t "courses.#{course.status}" %>">
   <td><%= link_to course.name, supervisor_course_path(course) %></td>
   <td><%= link_to course.description, supervisor_course_path(course) %></td>
+  <td><%= course.subjects.size %></td>
   <td>
-    <%= course.status %>
+    <span class="<%= course.status %>"><%= course.status %></span>
   </td>
 </tr>

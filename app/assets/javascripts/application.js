@@ -17,15 +17,20 @@
 //= require turbolinks
 //= require_tree .
 
-var click = function(){
-  $('.show-subject').on('click', function(){
-    var check = $(this).data('id');
-    $('tr[data-task='+check+']').toggleClass('block');
-    event.preventDefault();
-  });
+var flash = function(){
+  setTimeout(function(){
+    $('.alert').slideUp(500);
+  }, 2000);
+  var x = $(window).height();
+  var y = x - 60;
+  $('.content').css('min-height', x);
+  $('.page-content').css('min-height', x);
+  $('.signin').css('min-height', y);
 };
 
-$(document).on('page:change load', click);
+$(document).ready(flash);
+$(document).on('page:load', flash);
+$(document).on('page:change', flash);
 
 function datepick(){
   $('.input-daterange').datepicker({

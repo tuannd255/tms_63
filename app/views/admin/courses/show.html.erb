@@ -1,45 +1,59 @@
 <% provide :title, @course.name %>
-<div class="col-md-6 center course-content">
-  <ul>
-    <h3><%= t "admin.users.supervisor" %></h3>
+<div class="course-content">
+  <div class="col-md-8 course-info">
+    <div class="courses">
+      <h1><%= @course.name %></h1>
+      <h2>
+        <%= t "subjects.description" %>: 
+        <%= @course.description %>
+      </h2>
+      <div id="course-info">
+        <h4><b><%= t "subjects.title" %></b></h4>
+        <% if @course.course_subjects.any? %>
+          <% @course.course_subjects.each do |course_subject| %>
+            <li>
+              <%= link_to course_subject.subject.name,
+                admin_subject_path(course_subject.subject) %>
+            </li>
+          <% end %>
+        <% end %>
+        <%= link_to t("admin.edit"), edit_admin_course_path(@course),
+          class: "btn btn-primary submit-btn" if @course.init? %>
+        <%= link_to t("courses.delete"), [:admin, @course], method: :delete,
+          data: {confirm: t("devise.areyousure")},
+          class: "btn btn-danger submit-btn" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 course-user">
+    <div class="courses">
+      <h3><%= t "admin.users.supervisor" %></h3>
 
-    <% @user_courses.each do |supervisor| %>
-      <% if supervisor.user.supervisor? %>
-        <li>
-          <%= supervisor.user.name %>
-          <%= link_to t("destroy.button"),
-            admin_user_course_path(supervisor), method: :delete,
-            data: {confirm: t("destroy.confirm", name: supervisor.user.name)},
-            class: "btn btn-danger" %>
-        </li>
+      <% @user_courses.each do |supervisor| %>
+        <% if supervisor.user.supervisor? %>
+          <li class="row">
+            <div class="col-md-8 col-xs-8">
+              <%= link_to supervisor.user.name, user_path(supervisor.user) %>
+            </div>
+            <div class="col-md-4 col-xs-4">
+              <%= link_to t("destroy.button"),
+                admin_user_course_path(supervisor), method: :delete,
+                data: {confirm: t("destroy.confirm", name: supervisor.user.name)},
+                class: "btn btn-danger user-delete" %>
+            </div>
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= link_to t("courses.add_supervisor"),
-      edit_admin_course_assign_trainees_path(@course) unless
-      @course.finish? %>
+      <%= link_to t("courses.add_supervisor"),
+        edit_admin_course_assign_trainees_path(@course),
+        class: "btn btn-info" unless @course.finish? %>
 
-    <h3><%= t "admin.users.title" %></h3>
+      <h3><%= t "admin.users.trainee" %></h3>
 
-    <% @user_courses.each do |trainee| %>
-      <li><%= trainee.user.name if trainee.user.trainee? %></li>
-    <% end %>
-  </ul>
-</div>
-<div class="col-md-6 center course-content">
-  <h1><%= @course.name %></h1>
-  <h3>
-    <%= t "subjects.description" %>: 
-    <%= @course.description %>
-  </h3>
-  <h4><%= t "subjects.title" %></h4>
-  <% if @course.course_subjects.any? %>
-    <% @course.course_subjects.each do |course_subject| %>
-      <li>
-        <%= course_subject.subject.name %>
-      </li>
-    <% end %>
-  <% end %>
-  <%= link_to t("admin.delete"), [:admin, @course], method: :delete,
-    data: {confirm: t("devise.areyousure")},
-    class: "btn btn-danger submit-btn" %>
+      <% @user_courses.each do |trainee| %>
+        <li><%= link_to trainee.user.name,
+          user_path(trainee.user) if trainee.user.trainee? %></li>
+      <% end %>
+    </div>
+  </div>
 </div>

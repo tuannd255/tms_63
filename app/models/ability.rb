@@ -10,15 +10,16 @@ class Ability
         cannot :manage, :all
       end
     elsif user.supervisor?
-      can [:add, :destroy], UserCourse
+      can [:add, :destroy, :read], UserCourse
       can :read, User
-      can [:read, :update], [Course, CourseSubject]
+      can [:read, :update], [Course, CourseSubject, UserSubject]
       if namespace == "admin"
         cannot :manage, :all
       end
     else
-      can [:read], [Course, User]
+      can [:read], [UserCourse, User, UserSubject]
       can [:create], UserTask
+      can :update, UserSubject
       if namespace == "supervisor"
         cannot :manage, :all
       elsif namespace == "admin"

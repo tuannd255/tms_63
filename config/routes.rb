@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :courses do
       resource :assign_trainees, only: [:edit, :update]
     end
-    resources :subjects, except: :show
+    resources :subjects
     resources :user_courses, only: :destroy
   end
   namespace :supervisor do
@@ -31,8 +31,8 @@ Rails.application.routes.draw do
       resources :course_subjects, only: :show
     end
   end
-  resources :courses, only: [:show, :index]
-  resources :courses, only: :show do
+  resources :user_courses, only: [:show, :index] do
     resources :user_tasks, only: :create
+    resources :user_subjects, only: [:update, :show]
   end
 end

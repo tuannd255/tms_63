@@ -3,9 +3,6 @@ class StaticPagesController < ApplicationController
     load_data_size
   end
 
-  def help
-  end
-
   private
   def load_data_size
     objects = ["user", "course", "subject", "activity"]

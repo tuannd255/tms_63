@@ -1,0 +1,37 @@
+<% provide :title, @subject.name.capitalize %>
+<div class="subject-content">
+  <div class="col-md-8 col-xs-8">
+    <div class="subject-info">
+      <div id="subject-info">
+        <h1 class="text-left"><%= @subject.name %></h1>
+        <h3>
+          <%= t("subjects.description") %>: 
+          <%= @subject.description %>
+        </h3>
+        <div class="action">
+          <%= link_to t(:edit_button), edit_admin_subject_path(@subject),
+            class: "btn btn-primary submit-btn" %>
+          <%= link_to t("destroy.button"), admin_subject_path(@subject),
+            method: :delete, class: "btn btn-danger submit-btn",
+            data: {confirm: t("destroy.confirm", name: @subject.name)} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xs-4">
+    <div class="subject-task">
+      <div id="subject-task">
+        <% if @subject.tasks.any? %>
+          <h3><b><%= t "subjects.tasks", count: @subject.tasks.size %></b></h3>
+          <% @subject.tasks.each do |task| %>
+            <li>
+              <%= task.name %>
+            </li>
+          <% end %>
+        <% else %>
+          <strong><%= t "tasks.no_task" %></strong>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

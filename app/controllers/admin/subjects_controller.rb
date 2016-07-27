@@ -2,6 +2,10 @@ class Admin::SubjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @subjects = @subjects.page params[:page]
+  end
+
+  def show
   end
 
   def new
@@ -23,7 +27,7 @@ class Admin::SubjectsController < ApplicationController
   def update
     if @subject.update_attributes subject_params
       flash[:success] = t "subjects.edit_success"
-      redirect_to admin_subjects_path
+      redirect_to admin_subject_path @subject
     else
       render :edit
     end

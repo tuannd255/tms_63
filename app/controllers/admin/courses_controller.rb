@@ -9,7 +9,7 @@ class Admin::CoursesController < ApplicationController
 
   def show
     @course = Course.includes(:users).find_by_id params[:id]
-    @user_courses = @course.user_courses
+    @user_courses = @course.user_courses.page params[:page]
   end
 
   def new

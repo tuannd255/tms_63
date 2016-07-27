@@ -1,16 +1,45 @@
-<div class="row">
-  <div class="col-md-4 center">
-    <div class="user_info">
-      <p>
-        <%= @user.name %>
-      </p>
-      <p>
-        <%= t "email" %>
-        <%= @user.email %>
-      </p>
-      <%= link_to t("destroy.button"), admin_user_path(@user), method: :delete,
-        data: {confirm: t("destroy.confirm", name: @user.name)},
-        class: "btn btn-danger" if current_user.admin? &&
-        current_user != @user %>
+<div class="col-md-4 col-xs-4">
+  <div class="user_info">
+    <p><%= @user.name %></p>
+    <p>
+      <%= t "email" %>
+      <%= @user.email %>
+    </p>
+    <%= link_to t("destroy.button"), admin_user_path(@user), method: :delete,
+      data: {confirm: t("destroy.confirm", name: @user.name)},
+      class: "btn btn-danger" if current_user.admin? &&
+      current_user != @user %>
+  </div>
+</div>
+<div class="col-md-8 col-xs-8">
+  <div class="card courses">
+    <h2><%= t "users.my_course", name: @user.name %></h2>
+    <div class="table-responsive">
+      <table id="mytable" class="table table-bordred table-striped">
+        <thead>
+          <th><%= t "courses.title" %></th>
+          <th><%= t "subjects.description" %></th>
+          <th><%= t "courses.status" %></th>
+        </thead>
+        <tbody>
+          <% @user_courses.each do |user_course| %>
+            <tr class="<%= t "courses.#{user_course.course.status}" %>">
+              <% if current_user == user_course.user ||
+                current_user.supervisor? %>
+                <td><%= link_to user_course.course.name, user_course_path(user_course.course) %></td>
+              <% else %>
+                <td><%= user_course.course.name %></td>
+              <% end %>
+              <td><%= user_course.course.description %></td>
+              <td>
+                <span class="<%= user_course.course.status %>">
+                  <%= user_course.course.status %>
+                </span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

@@ -1,0 +1,51 @@
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <%= link_to t("home.content"), root_path %>
+      </li>
+      <li class="panel-group hvr-bounce-to-left">
+        <%= link_to root_path do %>
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          <%= t "home.title" %>
+        <% end %>
+      </li>
+      <li class="panel-group">
+        <a href="#user" data-toggle="collapse" class="hvr-bounce-to-left">
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          <%= t "admin.users.title" %>
+        </a>
+        <ul id="user" class="panel-collapse collapse">
+          <li class="hvr-bounce-to-left">
+            <%= link_to t("users.create"), new_admin_user_path %>
+          </li>
+          <li class="hvr-bounce-to-left">
+            <%= link_to t("admin.users.all"), admin_users_path %>
+          </li>
+        </ul>
+      </li>
+      <li class="panel-group hvr-bounce-to-left">
+        <%= link_to admin_subjects_path do %>
+          <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+          <%= t "subjects.title" %>
+        <% end %>
+      </li>
+      <li class="panel-group hvr-bounce-to-left">
+        <%= link_to admin_courses_path do %>
+          <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+          <%= t "courses.title" %>
+        <% end %>
+      </li>
+      <li class="panel-group">
+        <a href="#account" data-toggle="collapse" class="hvr-bounce-to-left">
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          <%= current_user.role.capitalize %>
+        </a>
+        <ul id="account" class="panel-collapse collapse">
+          <li class="hvr-bounce-to-left">
+            <%= link_to t(:log_out), destroy_user_session_path,
+              method: :delete %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
